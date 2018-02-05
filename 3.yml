@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: beebs
-        image: thebeebs/howareyou:latest
+        image: thebeebs/howareyou:a13c9d65d1e6ebeb9e06d69921e40b236a59eea9
         imagePullPolicy: Always
         resources:
           requests:
