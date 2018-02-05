@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: beebsservice2
+  labels:
+    app: deploytest2
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: deploytest2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: beebssite2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: deploytest2
+    spec:
+      containers:
+      - name: beebs
+        image: thebeebs/howareyou:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+        ports:
+        - containerPort: 80
